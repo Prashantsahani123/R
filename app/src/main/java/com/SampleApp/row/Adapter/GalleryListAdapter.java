@@ -326,15 +326,7 @@ public class GalleryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         e.printStackTrace();
                     }
 
-
-
-
                    // hol.modert.setText(modert_status);
-
-
-
-
-
 
                     if (PreferenceManager.getPreference(context, PreferenceManager.IS_GRP_ADMIN).equals("No")) {
                         hol.ontimep.setVisibility(View.GONE);

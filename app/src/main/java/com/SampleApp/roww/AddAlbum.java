@@ -910,9 +910,11 @@ public class AddAlbum extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
 
-                if (pos == 0 || pos == 3) {
-                    ll_attach.setVisibility(View.GONE);
-                } else {
+//                if (pos == 0 || pos == 3) {
+//                   // ll_attach.setVisibility(View.GONE);
+//                } else {
+
+                Toast.makeText(getApplicationContext(),"df",Toast.LENGTH_SHORT).show();
 
                     ll_attach.setVisibility(View.VISIBLE);
 
@@ -925,8 +927,7 @@ public class AddAlbum extends Activity {
                     txt_fileName.setText("");
                     ll_agenda_file.setVisibility(View.GONE);
                     ll_attach_agenda.setVisibility(View.VISIBLE);
-
-                }
+               // }
             }
 
             @Override
@@ -1807,13 +1808,23 @@ public class AddAlbum extends Activity {
             int pos = sp_meeting.getSelectedItemPosition();
 
             arrayList.add(new BasicNameValuePair("MeetingType", "" + pos));
-            if (pos == 0 || pos == 3) {
-                arrayList.add(new BasicNameValuePair("AgendaDocID", "0"));
-                arrayList.add(new BasicNameValuePair("MOMDocID", "0"));
-            } else {
+//            if (pos == 0 || pos == 3) {
+//                arrayList.add(new BasicNameValuePair("AgendaDocID", "0"));
+//                arrayList.add(new BasicNameValuePair("MOMDocID", "0"));
+//            } else {
+                // below two line are aded by pashant sahani
+
+                //arrayList.add(new BasicNameValuePair("AgendaDocID", "0"));
+               // arrayList.add(new BasicNameValuePair("MOMDocID", "0"));
+            try {
                 arrayList.add(new BasicNameValuePair("AgendaDocID", agenda_file_id));
                 arrayList.add(new BasicNameValuePair("MOMDocID", mom_file_id));
+            }catch (Exception e)
+            {
+                arrayList.add(new BasicNameValuePair("AgendaDocID", "0"));
+                arrayList.add(new BasicNameValuePair("MOMDocID", "0"));
             }
+         //   }
 //            arrayList.add(new BasicNameValuePair("AgendaDocID",agenda_file_id));
 //            arrayList.add(new BasicNameValuePair("MOMDocID",mom_file_id));
 

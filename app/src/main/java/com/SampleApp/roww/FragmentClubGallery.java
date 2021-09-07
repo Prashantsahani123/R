@@ -83,6 +83,8 @@ public class FragmentClubGallery extends Fragment {
         view = inflater.inflate(R.layout.fragment_gallery, container, false);
          init();
 
+        // Toast.makeText(getActivity(),"fdfgf",Toast.LENGTH_SHORT).show();
+
         if(getUserVisibleHint()) { // fragment is visible
 
             Log.d("row","nivedita getUserVisibleHint");
@@ -355,13 +357,13 @@ public class FragmentClubGallery extends Fragment {
         paramsTable.put("groupId", clubData.getGrpID());
 //        paramsTable.put("profileId", PreferenceManager.getPreference(getActivity(), PreferenceManager.GRP_PROFILE_ID));
         paramsTable.put("moduleId","52");//this is 8 I have changed to 52
-        // paramsTable.put("district_id", "3190"); //Change hard code value district id(get from api).
-      //  paramsTable.put("district_id", "0");
-      //  paramsTable.put("club_id", clubData.getClubId());
-      //  paramsTable.put("category_id", "0");
+         paramsTable.put("district_id", "3190"); //Change hard code value district id(get from api).
+        paramsTable.put("district_id", "0");
+        paramsTable.put("club_id", clubData.getClubId());
+        paramsTable.put("category_id", "0");
         paramsTable.put("year", year);
         paramsTable.put("SharType","1");
-   //     paramsTable.put("ClubRotaryType","1");
+        paramsTable.put("ClubRotaryType","1");
         paramsTable.put("searchText","");
 
         progressDialog = new ProgressDialog(context, R.style.TBProgressBar);
