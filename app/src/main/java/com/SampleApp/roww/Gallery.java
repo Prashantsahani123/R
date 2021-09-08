@@ -744,6 +744,7 @@ public class Gallery extends Activity {
                     Intent i = new Intent(Gallery.this, DTAddAlbum.class);
                     i.putExtra("serviceproject", serviceproject);
                     i.putExtra("maxBeneficiaries", maxBeneficiaries);
+                    startActivityForResult(i, UPDATE_ALBUM_REQEUST);
 
 
                 } else {

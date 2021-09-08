@@ -464,7 +464,8 @@ public class EditAlbumActivity extends Activity {
                     tv_clubServiceInfo.setText( getString( R.string.rotaryServiceText_new ) );
                 }
 
-                ll_attach.setVisibility( View.GONE );
+                //visible
+                ll_attach.setVisibility( View.VISIBLE );
 
                 mom_file_id = "0";
                 txt_fileName_mom.setText( "" );
@@ -525,7 +526,16 @@ public class EditAlbumActivity extends Activity {
                 if (isFirstLoad > 1) {
                     if (pos == 0 ||pos==3) {
                         ll_attach.setVisibility( View.GONE );
-                    } else {
+                        //visible
+                        ll_attach.setVisibility( View.VISIBLE );
+
+                        String tlt = tv_title.getText().toString();
+                        if (tlt.equalsIgnoreCase("Edit Service Project")) {
+                            ll_attach.setVisibility(View.GONE);
+                        }
+
+                    }
+                    else {
                         ll_attach.setVisibility( View.VISIBLE );
                         String tlt = tv_title.getText().toString();
                         if(tlt == null)
@@ -1157,6 +1167,12 @@ public class EditAlbumActivity extends Activity {
 //          ll_attach.setVisibility(View.GONE);
 //
 //      }
+
+
+        if (tlt.equalsIgnoreCase("Edit Service Project")) {
+            ll_attach.setVisibility(View.GONE);
+           //  Toast.makeText(getApplicationContext(),"ppppp"+tlt,Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -2526,7 +2542,7 @@ public class EditAlbumActivity extends Activity {
         String url = Constant.GetValidateDirectBeneficiaries;
         ArrayList<NameValuePair> arrayList = new ArrayList<NameValuePair>();
         arrayList.add( new BasicNameValuePair( "albumId", albumId ) );
-        arrayList.add( new BasicNameValuePair( "Financeyear", Gallery.year ) );
+        arrayList.add( new BasicNameValuePair( "FinancialYear", Gallery.year ) );
 
 
 
@@ -2845,6 +2861,16 @@ public class EditAlbumActivity extends Activity {
                 }
                 if (Integer.parseInt( jsonAlbumDetail.getString( "MeetingType" ) ) == 0 || Integer.parseInt( jsonAlbumDetail.getString( "MeetingType" ) ) == 3) {
                     ll_attach.setVisibility( View.GONE );
+
+                    //visible
+                    ll_attach.setVisibility( View.VISIBLE );
+                    String tlt = tv_title.getText().toString();
+                    if (tlt.equalsIgnoreCase("Edit Service Project")) {
+                        ll_attach.setVisibility(View.GONE);
+                    }
+
+
+
                 } else {
                     ll_attach.setVisibility( View.VISIBLE );
                     String tlt = tv_title.getText().toString();
@@ -3259,13 +3285,24 @@ public class EditAlbumActivity extends Activity {
             int pos = sp_meeting.getSelectedItemPosition();
 
             arrayList.add( new BasicNameValuePair( "MeetingType", "" + pos ) );
-            if (pos == 0||pos==3) {
-                arrayList.add( new BasicNameValuePair( "AgendaDocID", "0" ) );
-                arrayList.add( new BasicNameValuePair( "MOMDocID", "0" ) );
-            } else {
-                arrayList.add( new BasicNameValuePair( "AgendaDocID", agenda_file_id ) );
-                arrayList.add( new BasicNameValuePair( "MOMDocID", mom_file_id ) );
+//            if (pos == 0||pos==3) {
+//                arrayList.add( new BasicNameValuePair( "AgendaDocID", "0" ) );
+//                arrayList.add( new BasicNameValuePair( "MOMDocID", "0" ) );
+//            } else {
+//                arrayList.add( new BasicNameValuePair( "AgendaDocID", agenda_file_id ) );
+//                arrayList.add( new BasicNameValuePair( "MOMDocID", mom_file_id ) );
+//            }
+
+            //add by prashant sah on place above comments
+            try {
+                arrayList.add(new BasicNameValuePair("AgendaDocID", agenda_file_id));
+                arrayList.add(new BasicNameValuePair("MOMDocID", mom_file_id));
+            }catch (Exception e)
+            {
+                arrayList.add(new BasicNameValuePair("AgendaDocID", "0"));
+                arrayList.add(new BasicNameValuePair("MOMDocID", "0"));
             }
+
 
 
         } else if (rbPublic.isChecked()) {

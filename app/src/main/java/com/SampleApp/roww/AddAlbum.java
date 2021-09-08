@@ -914,17 +914,20 @@ public class AddAlbum extends Activity {
 //                   // ll_attach.setVisibility(View.GONE);
 //                } else {
 
-                Toast.makeText(getApplicationContext(),"df",Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getApplicationContext(),"df",Toast.LENGTH_SHORT).show();
 
                     ll_attach.setVisibility(View.VISIBLE);
 
                     mom_file_id = "0";
                     txt_fileName_mom.setText("");
+                    //visible
                     ll_mom_file.setVisibility(View.GONE);
                     ll_attach_mom.setVisibility(View.VISIBLE);
 
                     agenda_file_id = "0";
                     txt_fileName.setText("");
+
+                    //visible
                     ll_agenda_file.setVisibility(View.GONE);
                     ll_attach_agenda.setVisibility(View.VISIBLE);
                // }
@@ -1058,7 +1061,9 @@ public class AddAlbum extends Activity {
                     tv_clubServiceInfo.setText(getString(R.string.rotaryServiceText_new));
                 }
 
-                ll_attach.setVisibility(View.GONE);
+
+                // change visisbility by prashant sahani
+                ll_attach.setVisibility(View.VISIBLE);
 
                 mom_file_id = "0";
                 txt_fileName_mom.setText("");
@@ -1941,7 +1946,6 @@ public class AddAlbum extends Activity {
             {
                 t_new = "";
             }
-
 
             arrayList.add(new BasicNameValuePair("OnetimeOrOngoing", ontime));//
             arrayList.add(new BasicNameValuePair("NewOrExisting", ong_neww));

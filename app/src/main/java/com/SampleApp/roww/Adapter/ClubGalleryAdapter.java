@@ -65,7 +65,7 @@ public class ClubGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public void bindEmptyView(RecyclerView.ViewHolder holder, final int position) {
-         ((EmptyViewHolder) holder).getEmptyView().setText("Please Wait...");
+         ((EmptyViewHolder) holder).getEmptyView().setText("No Record Found");
     }
 
     public void bindNonEmptyView(RecyclerView.ViewHolder holder, final int position) {

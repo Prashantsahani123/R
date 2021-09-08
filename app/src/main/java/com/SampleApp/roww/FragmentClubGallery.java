@@ -354,16 +354,32 @@ public class FragmentClubGallery extends Fragment {
 
       //  paramsTable.put("grpID", clubData.getGrpID());
 
+//        groupId
+//                district_id
+//        category_id
+//                year
+//        club_id
+//                SharType
+//        moduleId
+//                searchText
+
+
+        extras = getArguments();
+
+        clubData = (FindAClubResultData) extras.getSerializable("clubData");
+
+        //{"club_id":"","groupId":"33532","year":"2020-2021","SharType":"1","category_id":"2","":"district_id0","moduleId":"52","searchText":""}
+
         paramsTable.put("groupId", clubData.getGrpID());
 //        paramsTable.put("profileId", PreferenceManager.getPreference(getActivity(), PreferenceManager.GRP_PROFILE_ID));
         paramsTable.put("moduleId","52");//this is 8 I have changed to 52
-         paramsTable.put("district_id", "3190"); //Change hard code value district id(get from api).
+ //        paramsTable.put("district_id", "3190"); //Change hard code value district id(get from api).
         paramsTable.put("district_id", "0");
         paramsTable.put("club_id", clubData.getClubId());
-        paramsTable.put("category_id", "0");
+        paramsTable.put("category_id", "2");
         paramsTable.put("year", year);
         paramsTable.put("SharType","1");
-        paramsTable.put("ClubRotaryType","1");
+//        paramsTable.put("ClubRotaryType","1");
         paramsTable.put("searchText","");
 
         progressDialog = new ProgressDialog(context, R.style.TBProgressBar);
@@ -374,14 +390,13 @@ public class FragmentClubGallery extends Fragment {
 
             JSONObject jsonParams = new JSONObject(new Gson().toJson(paramsTable));
 
-            Utils.log("URL : satish "+Constant.GetAlbumsList_New+" Params : "+jsonParams);
+            Utils.log("URL : satishh "+Constant.GetAlbumsList_New+" Params : "+jsonParams);
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
                     Constant.GetAlbumsList_New,
                     jsonParams,
 
                     new Response.Listener<JSONObject>() {
-
                         @Override
                         public void onResponse(JSONObject response) {
                             progressDialog.hide();
@@ -396,6 +411,7 @@ public class FragmentClubGallery extends Fragment {
                             progressDialog.hide();
                             isLoading = false;
                             processError(error);
+
                         }
                     }
             );
@@ -435,6 +451,7 @@ public class FragmentClubGallery extends Fragment {
             } else if ( status.equals("1") ) {
                 Toast.makeText(context, "Failed to get members of club. Please retry", Toast.LENGTH_LONG).show();
             }*/
+
 
             JSONObject result = response.getJSONObject("TBAlbumsListResult");
 
