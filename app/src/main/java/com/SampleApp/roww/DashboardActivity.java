@@ -720,7 +720,7 @@ progressDialog.show();*/
 
         SharedPreferences sp = getSharedPreferences( "userName", 0 );
         String tValue = sp.getString( "userName", "" );
-        userName.setText( "Hi " + tValue + "!" );
+        userName.setText( "Hi " + tValue + "" );
         //userName.setTextColor(Color.parseColor("#1EA3C1"));
 
 

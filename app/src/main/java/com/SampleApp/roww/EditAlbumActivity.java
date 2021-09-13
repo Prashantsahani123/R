@@ -524,18 +524,19 @@ public class EditAlbumActivity extends Activity {
                 Utils.log( " " + isFirstLoad );
 
                 if (isFirstLoad > 1) {
-                    if (pos == 0 ||pos==3) {
-                        ll_attach.setVisibility( View.GONE );
-                        //visible
-                        ll_attach.setVisibility( View.VISIBLE );
 
-                        String tlt = tv_title.getText().toString();
-                        if (tlt.equalsIgnoreCase("Edit Service Project")) {
-                            ll_attach.setVisibility(View.GONE);
-                        }
-
-                    }
-                    else {
+//                    if (pos == 0 ||pos==3) {
+//                      //  ll_attach.setVisibility( View.GONE );
+//                        //visible
+//                        ll_attach.setVisibility( View.VISIBLE );
+//
+//                        String tlt = tv_title.getText().toString();
+//                        if (tlt.equalsIgnoreCase("Edit Service Project")) {
+//                            ll_attach.setVisibility(View.GONE);
+//                        }
+//
+//                    }
+//                    else {
                         ll_attach.setVisibility( View.VISIBLE );
                         String tlt = tv_title.getText().toString();
                         if(tlt == null)
@@ -568,7 +569,7 @@ public class EditAlbumActivity extends Activity {
                         Utils.log( "Second" );
                         ll_attach_agenda.setVisibility( View.VISIBLE );
 
-                    }
+                   // }
                 }
 
                 isFirstLoad++;

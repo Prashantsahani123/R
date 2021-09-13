@@ -430,7 +430,7 @@ public class GroupDashboard extends Activity {
 
             try {
                 val = HttpConnection.postData( url, argList );
-                Log.d( "Response", "we" + val );
+                Log.d( "Responseassis", "we" + val );
             } catch (Exception e) {
                 e.printStackTrace();
 
@@ -524,6 +524,8 @@ public class GroupDashboard extends Activity {
 
 
         String isAG = PreferenceManager.getPreference( getApplicationContext(), PreferenceManager.IS_AG, "" );
+
+        Log.d("Aggg",isAG);
 
         if (isAG != null && (isAG.equalsIgnoreCase( "No" ) || isAG.equalsIgnoreCase( "" ))) {
 
