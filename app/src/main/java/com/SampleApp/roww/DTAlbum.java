@@ -196,7 +196,7 @@ public class DTAlbum extends Activity implements AdapterView.OnItemClickListener
     protected void onResume() {
         super.onResume();
         if (InternetConnection.checkConnection(this)) {
-          //  loadData();
+            loadData();
             checkForUpdate();
 
             Log.d("---------------", "Check for update gets called------");
