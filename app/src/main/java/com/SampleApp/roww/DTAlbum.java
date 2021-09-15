@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.SampleApp.row.Adapter.AlbumPhotoAdapter;
 import com.SampleApp.row.Data.AlbumPhotoData;
 import com.SampleApp.row.Data.ClubGalleryData;
+import com.SampleApp.row.FragmentClubGallery;
 import com.SampleApp.row.Utils.Constant;
 import com.SampleApp.row.Utils.HttpConnection;
 import com.SampleApp.row.Utils.InternetConnection;
@@ -80,6 +81,8 @@ public class DTAlbum extends Activity implements AdapterView.OnItemClickListener
     private String media_discription="";
     private String Ismedia="0";
     private TextView tv_rotractors;
+    List<NameValuePair> argListt = null;
+
 
 
     @Override
@@ -193,7 +196,7 @@ public class DTAlbum extends Activity implements AdapterView.OnItemClickListener
     protected void onResume() {
         super.onResume();
         if (InternetConnection.checkConnection(this)) {
-            loadData();
+          //  loadData();
             checkForUpdate();
 
             Log.d("---------------", "Check for update gets called------");
@@ -233,12 +236,12 @@ public class DTAlbum extends Activity implements AdapterView.OnItemClickListener
     }
 
     public void checkForUpdate() {
-
+        String yr = FragmentClubGallery.year;
         Log.e("Touchbase", "------ checkForUpdate() called for update");
         String url = Constant.GetAlbumPhotoList;
         ArrayList<NameValuePair> arrayList = new ArrayList<NameValuePair>();
-        arrayList.add(new BasicNameValuePair("albumId", albumId));
-
+        arrayList.add(new BasicNameValuePair("albumId", albumId)); //String yr = FragmentClubGallery.year;
+        arrayList.add(new BasicNameValuePair("Financeyear", yr));
         updatedOn = "1970/01/01 00:00:00";
 
         arrayList.add(new BasicNameValuePair("updatedOn", updatedOn));//updatedOn 1970-1-1 0:0:0
@@ -248,23 +251,24 @@ public class DTAlbum extends Activity implements AdapterView.OnItemClickListener
         ;
         Log.e("request", arrayList.toString());
 
-        Log.d("Response", "PARAMETERS " + Constant.GetAlbumPhotoList_New + " :- " + arrayList.toString());
+        Log.d("Response", "PARAMETERS " + Constant.GetAlbumPhotoList + " :- " + arrayList.toString());
         GalleryPhotosDataAsyncTask task = new GalleryPhotosDataAsyncTask(url, arrayList, this);
         task.execute();
     }
 
     public class GalleryPhotosDataAsyncTask extends AsyncTask<String, Object, Object> {
 
+        //private final List<NameValuePair> argListt;
         String val = null;
         final ProgressDialog progressDialog = new ProgressDialog(DTAlbum.this, R.style.TBProgressBar);
         Context context = null;
         String url = null;
-        List<NameValuePair> argList = null;
+//        List<NameValuePair> argListt = null;
 
 
         public GalleryPhotosDataAsyncTask(String url, List<NameValuePair> argList, Context ctx) {
             this.url = url;
-            this.argList = argList;
+            argListt = argList;
             context = ctx;
         }
 
@@ -280,9 +284,11 @@ public class DTAlbum extends Activity implements AdapterView.OnItemClickListener
         @Override
         protected Object doInBackground(String... params) {
             try {
-                val = HttpConnection.postData(url, argList);
+                Log.d("photo", "we" + argListt.toString());
+                val = HttpConnection.postData(url, argListt);
                 val = val.toString();
                 Log.d("Response", "we" + val);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -366,11 +372,13 @@ public class DTAlbum extends Activity implements AdapterView.OnItemClickListener
 
     public void loadData() {
 
+         String yr = FragmentClubGallery.year;
+
         Log.e("Touchbase", "------ loadData() called");
         String url = Constant.GetAlbumDetails_New;
         ArrayList<NameValuePair> arrayList = new ArrayList<NameValuePair>();
-        arrayList.add(new BasicNameValuePair("albumId", albumId));
-
+        arrayList.add(new BasicNameValuePair("albumId", albumId));//Financeyear
+        arrayList.add(new BasicNameValuePair("Financeyear", yr));
         Log.d("Album Data", "PARAMETERS " + Constant.GetAlbumDetails_New + " :- " + arrayList.toString());
         DTAlbum.GetAlbumDetailsAsynctask1 task = new DTAlbum.GetAlbumDetailsAsynctask1(url, arrayList, this);
         task.execute();

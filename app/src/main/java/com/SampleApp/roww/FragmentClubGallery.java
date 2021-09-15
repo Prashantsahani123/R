@@ -65,7 +65,7 @@ public class FragmentClubGallery extends Fragment {
     ClubGalleryAdapter.OnItemSelectedListener onItemSelectedListener;
     ProgressDialog progressDialog=null;
     Spinner sp_year;
-    String year="",ClubRotaryType="";;
+    public static String year="",ClubRotaryType="";;
     boolean isLoading = true;
     private String fromYear, toYear;
     ArrayList<String> filtertype;
@@ -375,7 +375,7 @@ public class FragmentClubGallery extends Fragment {
         paramsTable.put("moduleId","52");//this is 8 I have changed to 52
  //        paramsTable.put("district_id", "3190"); //Change hard code value district id(get from api).
         paramsTable.put("district_id", "0");
-        paramsTable.put("club_id", clubData.getClubId());
+        paramsTable.put("club_id", clubData.getGrpID());
         paramsTable.put("category_id", "2");
         paramsTable.put("year", year);
         paramsTable.put("SharType","1");
